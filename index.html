@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Маршрут ЕГЭ: интерактивная система подготовки к ЕГЭ и ОГЭ с диагностикой, персональным маршрутом, практикой, наставником и понятным прогрессом."
+    />
+    <meta name="theme-color" content="#f4f8ff" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content="Маршрут ЕГЭ, подготовка по персональному маршруту" />
+    <meta property="og:description" content="Диагностика, недельный план, практика по слабым темам, пробники, наставник и прозрачный прогресс для родителей." />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Маршрут ЕГЭ, подготовка по персональному маршруту" />
+    <meta name="twitter:description" content="Интерактивный прототип онлайн-школы, где ученик видит следующий шаг и готовится без хаоса." />
+    <title>Маршрут ЕГЭ, интерактивная система подготовки к экзаменам</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">К основному содержанию</a>
+
+    <header class="site-header" data-shell="site">
+      <nav class="nav shell" aria-label="Основная навигация">
+        <a class="brand" href="#top" aria-label="Маршрут ЕГЭ, на главную">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M5 18.5C8.5 12 12.2 8.4 19 5.5" />
+              <path d="M7 7.5h10v10" />
+              <path d="M5.5 18.5h6.3" />
+            </svg>
+          </span>
+          <span>
+            <strong>Маршрут ЕГЭ</strong>
+            <small>ЕГЭ и ОГЭ</small>
+          </span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="sr-only">Открыть меню</span>
+        </button>
+
+        <div class="nav-menu" id="nav-menu">
+          <a href="#route">Маршрут</a>
+          <a href="#diagnostic">Диагностика</a>
+          <a href="#cabinet">Кабинет</a>
+          <a href="#parents">Родителям</a>
+          <a href="#formats">Форматы</a>
+        </div>
+
+        <a class="button button-primary nav-cta" href="#diagnostic" data-start-diagnostic>
+          Начать диагностику
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M5 12h14" />
+            <path d="m13 6 6 6-6 6" />
+          </svg>
+        </a>
+      </nav>
+    </header>
+
+    <main id="main" class="site-main" data-shell="site">
+      <section class="hero section" id="top">
+        <div class="shell hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">Прототип онлайн-школы с личным маршрутом</p>
+            <h1>Маршрут к ЕГЭ на каждый день</h1>
+            <p class="hero-lead">
+              Маршрут ЕГЭ начинает с диагностики, собирает план на неделю, ведёт практику по слабым темам и показывает прогресс ученику, наставнику и родителю.
+            </p>
+
+            <div class="hero-actions" aria-label="Основные действия">
+              <a class="button button-primary" href="#diagnostic" data-start-diagnostic>
+                Пройти диагностику
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M5 12h14" />
+                  <path d="m13 6 6 6-6 6" />
+                </svg>
+              </a>
+              <button class="button button-secondary" type="button" data-open-demo>
+                Открыть кабинет
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M5 12h14" />
+                  <path d="m13 6 6 6-6 6" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="journey-strip" aria-label="Сценарий прототипа">
+              <span>Диагностика</span>
+              <span>Маршрут</span>
+              <span>Кабинет</span>
+              <span>Заявка</span>
+            </div>
+          </div>
+
+          <div class="hero-os reveal" aria-label="Пример навигационной системы подготовки">
+            <div class="os-topline">
+              <span class="live-dot"></span>
+              Маршрут обновлён после пробника
+            </div>
+
+            <div class="route-map">
+              <div class="route-station done">
+                <span>01</span>
+                <strong>Диагностика</strong>
+                <small>Уровень и цель</small>
+              </div>
+              <div class="route-station active">
+                <span>02</span>
+                <strong>Неделя</strong>
+                <small>5 точных шагов</small>
+              </div>
+              <div class="route-station">
+                <span>03</span>
+                <strong>Практика</strong>
+                <small>Слабые темы</small>
+              </div>
+            </div>
+
+            <div class="operator-board">
+              <div class="board-main">
+                <p class="dashboard-label">Сегодня</p>
+                <h2>15 заданий по производной</h2>
+                <p>Эта тема дала 4 ошибки в последнем пробнике. Наставник уже прикрепил разбор.</p>
+                <div class="task-stack">
+                  <label><input type="checkbox" checked /> Разбор ошибок пробника</label>
+                  <label><input type="checkbox" checked /> Теория по касательной</label>
+                  <label><input type="checkbox" /> Тренировка из 15 заданий</label>
+                </div>
+              </div>
+
+              <div class="board-side">
+                <div class="score-ring" style="--progress: 68">
+                  <span>68</span>
+                  <small>баллов</small>
+                </div>
+                <div class="mini-metrics">
+                  <span><strong>42%</strong> маршрута</span>
+                  <span><strong>3</strong> пробника</span>
+                  <span><strong>+11</strong> баллов</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mentor-note">
+              <span class="mentor-avatar">М</span>
+              <div>
+                <strong>Мария, наставник</strong>
+                <p>Не добавляем новые темы, закрываем ошибки недели.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tension-section" id="problem">
+        <div class="shell split-layout">
+          <div class="section-heading align-left reveal">
+            <p class="eyebrow">Почему это нужно</p>
+            <h2>Материалов много, маршрута обычно нет</h2>
+            <p>
+              Ученик может смотреть уроки, решать сборники и писать пробники, но всё равно не понимать, что делать сегодня и почему именно это приближает к цели.
+            </p>
+          </div>
+
+          <div class="friction-board reveal" aria-label="Типичные проблемы подготовки">
+            <div class="friction-row">
+              <span>01</span>
+              <strong>Ошибки не превращаются в план</strong>
+              <p>После пробника остаётся список баллов, а не понятный маршрут работы.</p>
+            </div>
+            <div class="friction-row">
+              <span>02</span>
+              <strong>Сложно увидеть движение</strong>
+              <p>Ученик занимается, родители спрашивают, прогресс не собран в одну картину.</p>
+            </div>
+            <div class="friction-row">
+              <span>03</span>
+              <strong>Перегруз маскируется усердием</strong>
+              <p>Появляется желание учить всё сразу, вместо спокойного темпа на неделю.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section route-section" id="route">
+        <div class="shell">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Как работает система</p>
+            <h2>Маршрут связывает диагностику, практику и обратную связь</h2>
+          </div>
+
+          <div class="route-system reveal">
+            <article class="route-node">
+              <span>1</span>
+              <h3>Диагностика</h3>
+              <p>Фиксируем класс, экзамен, предмет, цель, уровень и главный риск.</p>
+            </article>
+            <article class="route-node">
+              <span>2</span>
+              <h3>Приоритеты</h3>
+              <p>Показываем темы, которые сильнее всего влияют на ближайший рост.</p>
+            </article>
+            <article class="route-node">
+              <span>3</span>
+              <h3>Неделя</h3>
+              <p>Собираем реалистичный план без перегруза и случайных материалов.</p>
+            </article>
+            <article class="route-node">
+              <span>4</span>
+              <h3>Пробник</h3>
+              <p>Ошибки возвращаются в маршрут, а не остаются отдельным отчётом.</p>
+            </article>
+            <article class="route-node">
+              <span>5</span>
+              <h3>Наставник</h3>
+              <p>Даёт короткий комментарий и помогает удерживать темп.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section diagnostic-section" id="diagnostic">
+        <div class="shell diagnostic-layout">
+          <div class="diagnostic-copy reveal">
+            <p class="eyebrow">Интерактивная диагностика</p>
+            <h2>Соберите маршрут за минуту</h2>
+            <p>
+              Это демо-диагностика для презентации. Она не отправляет данные на сервер, а сразу показывает, как система превращает вводные в план подготовки.
+            </p>
+            <div class="diagnostic-proof">
+              <div><strong id="preview-goal">ЕГЭ, математика, 85+</strong><span>цель маршрута</span></div>
+              <div><strong id="preview-risk">Не хватает практики</strong><span>главный риск</span></div>
+              <div><strong id="preview-week">5 шагов</strong><span>первая неделя</span></div>
+            </div>
+          </div>
+
+          <form class="diagnostic-workspace reveal" id="diagnostic-form" novalidate>
+            <div class="workspace-top">
+              <div>
+                <p class="eyebrow">Шаг 1 из 1</p>
+                <h3>Вводные ученика</h3>
+              </div>
+              <span class="status-pill">Демо</span>
+            </div>
+
+            <fieldset>
+              <legend>Класс</legend>
+              <div class="choice-grid">
+                <label><input type="radio" name="grade" value="9 класс" required /> <span>9 класс</span></label>
+                <label><input type="radio" name="grade" value="10 класс" /> <span>10 класс</span></label>
+                <label><input type="radio" name="grade" value="11 класс" checked /> <span>11 класс</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Экзамен</legend>
+              <div class="choice-grid compact">
+                <label><input type="radio" name="exam" value="ЕГЭ" checked /> <span>ЕГЭ</span></label>
+                <label><input type="radio" name="exam" value="ОГЭ" /> <span>ОГЭ</span></label>
+              </div>
+            </fieldset>
+
+            <label class="field">
+              <span>Предмет</span>
+              <select name="subject" required>
+                <option value="математике">Математика</option>
+                <option value="русскому языку">Русский язык</option>
+                <option value="обществознанию">Обществознание</option>
+                <option value="истории">История</option>
+                <option value="английскому языку">Английский язык</option>
+                <option value="информатике">Информатика</option>
+              </select>
+            </label>
+
+            <fieldset>
+              <legend>Цель</legend>
+              <div class="choice-grid">
+                <label><input type="radio" name="goal" value="60+" /> <span>60+</span></label>
+                <label><input type="radio" name="goal" value="75+" /> <span>75+</span></label>
+                <label><input type="radio" name="goal" value="85+" checked /> <span>85+</span></label>
+                <label><input type="radio" name="goal" value="90+" /> <span>90+</span></label>
+              </div>
+            </fieldset>
+
+            <label class="field">
+              <span>Текущий уровень</span>
+              <select name="level" required>
+                <option value="начальный">Начальный</option>
+                <option value="средний" selected>Средний</option>
+                <option value="уверенный">Уверенный</option>
+              </select>
+            </label>
+
+            <fieldset>
+              <legend>Что сейчас мешает больше всего?</legend>
+              <div class="choice-grid wide">
+                <label><input type="radio" name="problem" value="Не понимаю, что учить" /> <span>Не понимаю, что учить</span></label>
+                <label><input type="radio" name="problem" value="Не хватает практики" checked /> <span>Не хватает практики</span></label>
+                <label><input type="radio" name="problem" value="Боюсь не успеть" /> <span>Боюсь не успеть</span></label>
+                <label><input type="radio" name="problem" value="Не вижу прогресс" /> <span>Не вижу прогресс</span></label>
+                <label><input type="radio" name="problem" value="Нужна помощь со второй частью" /> <span>Нужна помощь со второй частью</span></label>
+              </div>
+            </fieldset>
+
+            <div class="form-status" role="status" aria-live="polite"></div>
+
+            <button class="button button-primary modal-submit" type="submit" data-submit-diagnostic>
+              Собрать маршрут
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M5 12h14" />
+                <path d="m13 6 6 6-6 6" />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section cabinet-section" id="cabinet">
+        <div class="shell cabinet-layout">
+          <div class="section-heading align-left reveal">
+            <p class="eyebrow">Личный кабинет</p>
+            <h2>Кабинет показывает работу школы, а не просто уроки</h2>
+            <p>
+              В демо-кабинете видно, что система знает цель ученика, текущие ошибки, задачи на сегодня, пробники, комментарий наставника и родительский отчёт.
+            </p>
+            <button class="button button-secondary" type="button" data-open-demo>
+              Открыть демо кабинета
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M5 12h14" />
+                <path d="m13 6 6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="cabinet-preview reveal">
+            <div class="cabinet-preview-top">
+              <div>
+                <span>Аня, 11 класс</span>
+                <strong>ЕГЭ по математике на 85+</strong>
+              </div>
+              <span class="status-pill">124 дня</span>
+            </div>
+            <div class="focus-lane">
+              <div>
+                <small>Ближайший шаг</small>
+                <strong>Закрыть ошибки по производной</strong>
+              </div>
+              <button type="button" data-open-demo>Открыть</button>
+            </div>
+            <div class="heatmap" aria-label="Приоритеты тем">
+              <span class="hot">Производная</span>
+              <span class="warm">Параметры</span>
+              <span class="cool">Текстовые задачи</span>
+              <span class="cool">Вероятность</span>
+              <span class="warm">Вторая часть</span>
+              <span class="done">Логарифмы</span>
+            </div>
+            <div class="parent-snapshot">
+              <span>Отчёт родителю</span>
+              <p>На этой неделе закрыто 2 темы, пробник вырос на 5 баллов, темп без перегруза.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section parents-section" id="parents">
+        <div class="shell parents-layout">
+          <div class="parents-panel reveal">
+            <p class="eyebrow">Для родителей</p>
+            <h2>Прозрачность без ежедневного контроля</h2>
+            <p>
+              Родитель видит не «занимался или нет», а что изменилось: какие темы закрыты, как двигается балл, где ученик застрял и что советует наставник.
+            </p>
+            <button class="button button-secondary" type="button" data-open-lead data-format="Консультация для родителей">
+              Получить консультацию
+            </button>
+          </div>
+
+          <div class="report-preview reveal" aria-label="Пример родительского отчёта">
+            <div class="report-line">
+              <span>Темы недели</span>
+              <strong>2 закрыты, 1 требует разбора</strong>
+            </div>
+            <div class="report-line">
+              <span>Пробник</span>
+              <strong>67 → 72 балла</strong>
+            </div>
+            <div class="report-line">
+              <span>Регулярность</span>
+              <strong>4 занятия из 5</strong>
+            </div>
+            <blockquote>Лучше закрепить ошибки, чем добавлять новые разделы. Темп сейчас рабочий.</blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section class="section formats-section" id="formats">
+        <div class="shell">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Форматы</p>
+            <h2>Три режима одной маршрутной системы</h2>
+            <p>Форматы условные для прототипа. Они показывают, как продукт может масштабироваться по уровню поддержки.</p>
+          </div>
+
+          <div class="format-grid">
+            <article class="format-card reveal">
+              <span class="format-kicker">Самостоятельный темп</span>
+              <h3>Start</h3>
+              <p>Для ученика, которому нужен план, задания и трекер прогресса.</p>
+              <ul>
+                <li>Диагностика и маршрут</li>
+                <li>Практика по слабым темам</li>
+                <li>Пробники и динамика балла</li>
+              </ul>
+              <button class="button button-secondary" type="button" data-open-lead data-format="Start">Выбрать Start</button>
+            </article>
+            <article class="format-card featured reveal">
+              <span class="format-badge">Оптимально для 11 класса</span>
+              <h3>Plus</h3>
+              <p>Для ученика, которому нужна регулярная обратная связь и спокойный контроль.</p>
+              <ul>
+                <li>Всё из Start</li>
+                <li>Наставник и еженедельный отчёт</li>
+                <li>Разбор ошибок после пробников</li>
+              </ul>
+              <button class="button button-primary" type="button" data-open-lead data-format="Plus">Выбрать Plus</button>
+            </article>
+            <article class="format-card reveal">
+              <span class="format-kicker">Глубокая поддержка</span>
+              <h3>Max</h3>
+              <p>Для сложных целей, второй части и плотной работы с ошибками.</p>
+              <ul>
+                <li>Всё из Plus</li>
+                <li>Индивидуальные консультации</li>
+                <li>Отдельный маршрут по второй части</li>
+              </ul>
+              <button class="button button-secondary" type="button" data-open-lead data-format="Max">Выбрать Max</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta" id="request">
+        <div class="shell">
+          <div class="cta-panel reveal">
+            <div>
+              <p class="eyebrow">Финальный шаг прототипа</p>
+              <h2>Покажите жюри полный путь ученика</h2>
+              <p>Начните с диагностики или оставьте демо-заявку. В прототипе данные не отправляются, форма только показывает готовый сценарий.</p>
+            </div>
+            <div class="cta-actions">
+              <a class="button button-primary" href="#diagnostic" data-start-diagnostic>Пройти диагностику</a>
+              <button class="button button-secondary" type="button" data-open-lead data-format="Демо-заявка">Оставить заявку</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="app-view" id="result-view" data-view="result" hidden>
+      <div class="app-shell">
+        <header class="app-header">
+          <a class="brand" href="#top" data-back-site>
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M5 18.5C8.5 12 12.2 8.4 19 5.5" />
+                <path d="M7 7.5h10v10" />
+                <path d="M5.5 18.5h6.3" />
+              </svg>
+            </span>
+            <span><strong>Маршрут ЕГЭ</strong><small>персональный маршрут</small></span>
+          </a>
+          <button class="button button-secondary" type="button" data-back-site>Вернуться на сайт</button>
+        </header>
+
+        <main class="result-layout" tabindex="-1">
+          <section class="result-hero">
+            <p class="eyebrow">Маршрут собран</p>
+            <h1 id="result-title">ЕГЭ по математике на 85+</h1>
+            <p id="result-summary">Система определила точку старта, главный риск и первую неделю подготовки.</p>
+            <div class="result-facts">
+              <div><span>Уровень</span><strong id="result-level">средний</strong></div>
+              <div><span>Главный риск</span><strong id="result-risk">Не хватает практики</strong></div>
+              <div><span>Темп</span><strong id="result-pace">5 шагов в неделю</strong></div>
+            </div>
+          </section>
+
+          <aside class="result-panel">
+            <h2>Первая неделя</h2>
+            <ol id="week-plan-list">
+              <li>Диагностика по базовым темам</li>
+              <li>Разбор ошибок</li>
+              <li>3 тренировки по слабым заданиям</li>
+              <li>Мини-пробник в конце недели</li>
+              <li>Обновление маршрута</li>
+            </ol>
+          </aside>
+
+          <section class="result-panel priority-panel">
+            <h2>Приоритеты</h2>
+            <div id="result-topics" class="topic-list">
+              <span class="hot">Производная</span>
+              <span class="warm">Параметры</span>
+              <span class="cool">Текстовые задачи</span>
+            </div>
+            <div class="nearest-action">
+              <span class="icon-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 11.5 11.2 14 16 8.5" /><path d="M5 4.5h14v15H5z" /></svg>
+              </span>
+              <div>
+                <span>Ближайший шаг</span>
+                <strong id="result-next">Пройти короткий пробник на 25 минут, чтобы уточнить слабые темы.</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="result-panel mentor-result">
+            <h2>Комментарий наставника</h2>
+            <p id="result-mentor">Начинаем с короткой практики и фиксируем ошибки. Через неделю маршрут обновится по результатам мини-пробника.</p>
+            <button class="button button-primary" type="button" data-open-demo>Открыть личный кабинет</button>
+          </section>
+        </main>
+      </div>
+    </section>
+
+    <section class="app-view dashboard-app" id="demo-view" data-view="demo" hidden>
+      <div class="learning-shell">
+        <aside class="learning-sidebar">
+          <a class="brand" href="#top" data-back-site>
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M5 18.5C8.5 12 12.2 8.4 19 5.5" />
+                <path d="M7 7.5h10v10" />
+                <path d="M5.5 18.5h6.3" />
+              </svg>
+            </span>
+            <span><strong>Маршрут ЕГЭ</strong><small>демо кабинет</small></span>
+          </a>
+          <nav class="dashboard-tabs" aria-label="Разделы личного кабинета">
+            <button class="active" type="button" data-dashboard-tab="today">Сегодня</button>
+            <button type="button" data-dashboard-tab="practice">Практика</button>
+            <button type="button" data-dashboard-tab="tests">Пробники</button>
+            <button type="button" data-dashboard-tab="mentor">Наставник</button>
+            <button type="button" data-dashboard-tab="parent">Родителю</button>
+          </nav>
+          <button class="button button-secondary" type="button" data-back-site>На сайт</button>
+        </aside>
+
+        <main class="learning-main" id="demo-main" tabindex="-1">
+          <div class="learning-top">
+            <div>
+              <p class="eyebrow">Мой маршрут</p>
+              <h1 id="demo-greeting">Привет, Аня</h1>
+              <p id="demo-goal">Цель: ЕГЭ по математике на 85+</p>
+            </div>
+            <div class="exam-countdown">
+              <span>До экзамена</span>
+              <strong>124 дня</strong>
+            </div>
+          </div>
+
+          <section class="dashboard-tab-panel is-active" data-tab-panel="today">
+            <div class="learning-grid">
+              <article class="learning-card progress-card">
+                <div class="ring" style="--progress: 42"><span>42%</span></div>
+                <div>
+                  <h2>Прогресс маршрута</h2>
+                  <p>Закрыто 10 из 24 тем. Средний результат пробников: 67 баллов.</p>
+                </div>
+              </article>
+              <article class="learning-card next-card">
+                <p class="eyebrow">Ближайший шаг</p>
+                <h2 id="demo-next-title">15 заданий по теме «Производная»</h2>
+                <p id="demo-next-copy">В последнем пробнике эта тема дала больше всего ошибок.</p>
+                <button class="button button-primary" type="button" data-open-lead data-format="Практика по маршруту">Получить доступ</button>
+              </article>
+              <article class="learning-card">
+                <h2>Сегодня</h2>
+                <div class="task-stack dashboard-stack">
+                  <label><input type="checkbox" checked /> Разобрать 4 ошибки пробника</label>
+                  <label><input type="checkbox" checked /> Посмотреть короткий разбор наставника</label>
+                  <label><input type="checkbox" /> Решить тренировку на 15 заданий</label>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="dashboard-tab-panel" data-tab-panel="practice">
+            <div class="learning-grid two-col">
+              <article class="learning-card">
+                <h2>Слабые темы</h2>
+                <div id="demo-topics" class="priority-list">
+                  <div><strong>Производная</strong><span>высокий приоритет, 4 ошибки</span></div>
+                  <div><strong>Параметры</strong><span>высокий приоритет, нужна проверка</span></div>
+                  <div><strong>Текстовые задачи</strong><span>средний приоритет</span></div>
+                </div>
+              </article>
+              <article class="learning-card practice-plan">
+                <h2>Практика недели</h2>
+                <div class="practice-bar"><span style="--value: 68%"></span></div>
+                <p>Выполнено 34 из 50 заданий. Система не добавляет новые темы, пока ошибки недели не закрыты.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="dashboard-tab-panel" data-tab-panel="tests">
+            <div class="learning-grid two-col">
+              <article class="learning-card">
+                <h2>Динамика пробников</h2>
+                <svg class="line-chart" viewBox="0 0 520 190" role="img" aria-label="Результат пробников вырос с 56 до 67 баллов">
+                  <path class="chart-grid" d="M0 150H520M0 108H520M0 66H520" />
+                  <path class="chart-area" d="M8 146C70 124 118 120 160 128C216 138 244 92 294 94C348 96 372 62 426 66C474 70 500 42 512 30V184H8Z" />
+                  <path class="chart-line" d="M8 146C70 124 118 120 160 128C216 138 244 92 294 94C348 96 372 62 426 66C474 70 500 42 512 30" />
+                </svg>
+              </article>
+              <article class="learning-card">
+                <h2>Следующий пробник</h2>
+                <p>Пятница, 17:00. После проверки маршрут обновит приоритеты и план на следующую неделю.</p>
+                <button class="button button-secondary" type="button" data-open-lead data-format="Разбор пробника">Запросить разбор</button>
+              </article>
+            </div>
+          </section>
+
+          <section class="dashboard-tab-panel" data-tab-panel="mentor">
+            <div class="learning-grid two-col">
+              <article class="learning-card mentor-card">
+                <div class="mentor-row">
+                  <span class="mentor-avatar">М</span>
+                  <div>
+                    <h2>Наставник Мария</h2>
+                    <p id="demo-mentor-copy">Ты хорошо двигаешься по базовым темам. На этой неделе закрепляем ошибки после пробника и не добавляем новые разделы.</p>
+                  </div>
+                </div>
+                <div class="mentor-actions">
+                  <button class="button button-primary" type="button" data-open-lead data-format="Вопрос наставнику">Задать вопрос</button>
+                  <button class="button button-secondary" type="button" data-open-lead data-format="План с наставником">Обсудить план</button>
+                </div>
+              </article>
+              <article class="learning-card">
+                <h2>Следующее касание</h2>
+                <div class="report-line"><span>Сегодня</span><strong>проверка 15 заданий</strong></div>
+                <div class="report-line"><span>Среда</span><strong>разбор ошибок пробника</strong></div>
+                <div class="report-line"><span>Воскресенье</span><strong>обновление маршрута</strong></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="dashboard-tab-panel" data-tab-panel="parent">
+            <div class="learning-grid two-col">
+              <article class="learning-card">
+                <h2>Сводка для родителя</h2>
+                <div class="report-line"><span>Регулярность</span><strong>4 занятия из 5</strong></div>
+                <div class="report-line"><span>Динамика</span><strong>+11 баллов за 3 пробника</strong></div>
+                <div class="report-line"><span>Фокус недели</span><strong>Производная и параметры</strong></div>
+              </article>
+              <article class="learning-card">
+                <h2>Комментарий</h2>
+                <p>Подготовка идёт в рабочем темпе. Сейчас важнее закрепить ошибки, чем увеличивать нагрузку.</p>
+                <button class="button button-secondary" type="button" data-open-lead data-format="Родительский отчёт">Получить отчёт</button>
+              </article>
+            </div>
+          </section>
+        </main>
+      </div>
+    </section>
+
+    <dialog class="modal" id="lead-dialog" aria-labelledby="lead-title">
+      <form class="modal-card lead-form" method="dialog" novalidate>
+        <div class="modal-top">
+          <div>
+            <p class="eyebrow">Демо-заявка</p>
+            <h2 id="lead-title">Подберём формат подготовки</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-dialog aria-label="Закрыть заявку">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12" /><path d="M18 6 6 18" /></svg>
+          </button>
+        </div>
+
+        <p class="demo-note">Прототип не отправляет данные. После заполнения появится демо-подтверждение.</p>
+        <div class="form-status" role="status" aria-live="polite"></div>
+        <input type="hidden" name="format" value="" />
+
+        <label class="field">
+          <span>Имя</span>
+          <input type="text" name="name" autocomplete="name" required />
+        </label>
+        <label class="field">
+          <span>Класс</span>
+          <select name="leadGrade" required>
+            <option value="">Выберите класс</option>
+            <option>9 класс</option>
+            <option>10 класс</option>
+            <option>11 класс</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Предмет</span>
+          <input type="text" name="leadSubject" required />
+        </label>
+        <label class="field">
+          <span>Телефон или Telegram</span>
+          <input type="text" name="contact" autocomplete="tel" required />
+        </label>
+        <label class="field">
+          <span>Комментарий</span>
+          <textarea name="comment" rows="3"></textarea>
+        </label>
+
+        <button class="button button-primary modal-submit" type="submit" data-submit-lead>
+          Показать демо-подтверждение
+        </button>
+      </form>
+    </dialog>
+
+    <div class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
