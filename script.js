@@ -8,26 +8,82 @@ const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('#nav-menu');
 const diagnosticForm = document.querySelector('#diagnostic-form');
 
+const tariffCatalog = {
+  Start: {
+    title: 'Start',
+    price: '3 900 ₽/мес',
+    summary: 'Маршрут, тренажёр, пробники и прогресс без регулярного наставника.'
+  },
+  Plus: {
+    title: 'Plus',
+    price: '6 900 ₽/мес',
+    summary: 'Наставник, еженедельный отчёт, разбор ошибок и родительская сводка.'
+  },
+  Max: {
+    title: 'Max',
+    price: '12 900 ₽/мес',
+    summary: 'Индивидуальные консультации, проверка второй части и усиленный маршрут.'
+  },
+  'Практика по маршруту': {
+    title: 'Практика по маршруту',
+    price: 'формат Plus',
+    summary: 'Доступ к практике, проверке и комментариям наставника.'
+  },
+  'Разбор пробника': {
+    title: 'Разбор пробника',
+    price: 'формат Plus',
+    summary: 'Проверка пробника, карта ошибок и обновление маршрута.'
+  },
+  'Вопрос наставнику': {
+    title: 'Вопрос наставнику',
+    price: 'формат Plus',
+    summary: 'Короткая консультация по текущему маршруту и слабым темам.'
+  },
+  'План с наставником': {
+    title: 'План с наставником',
+    price: 'формат Plus',
+    summary: 'Совместная настройка темпа, задач недели и контрольных точек.'
+  },
+  'Родительский отчёт': {
+    title: 'Родительский отчёт',
+    price: 'формат Plus',
+    summary: 'Сводка по регулярности, темам, динамике баллов и рекомендациям.'
+  },
+  'Консультация для родителей': {
+    title: 'Консультация для родителей',
+    price: 'бесплатный вводный звонок',
+    summary: 'Покажем, как родитель видит маршрут, прогресс и комментарии наставника.'
+  },
+  'Подбор тарифа': {
+    title: 'Подбор тарифа',
+    price: 'подбор тарифа',
+    summary: 'Подберём формат после короткой диагностики и цели ученика.'
+  }
+};
+
 const routeProfiles = {
   'Не понимаю, что учить': {
     risk: 'Нет порядка тем',
     pace: '4 шага в неделю',
+    summary: 'Маршрут начнётся с карты тем и коротких проверок, чтобы убрать случайный выбор материалов.',
     next: 'Пройти короткую диагностику по базовым темам и расставить темы по влиянию на балл.',
     mentor: 'Сначала собираем карту тем. Не добавляем материалы, пока не понятно, какие блоки дают самый быстрый рост.',
     topics: ['Базовые темы', 'Алгебра', 'План повторения'],
-    plan: ['Диагностика по базовым темам', 'Карта приоритетов', '2 тренировки по первому блоку', 'Мини-проверка', 'Обновление маршрута']
+    plan: ['Диагностика по базовым темам', 'Карта приоритетов', '2 тренировки по первому блоку', 'Мини-проверка', 'Отчёт родителю']
   },
   'Не хватает практики': {
     risk: 'Не хватает регулярной практики',
     pace: '5 шагов в неделю',
+    summary: 'Первая неделя делает практику регулярной: короткие задания, фиксация ошибок и мини-пробник.',
     next: 'Пройти короткий пробник на 25 минут, чтобы уточнить слабые темы.',
     mentor: 'Ставим регулярную практику и фиксируем ошибки. Через неделю маршрут обновится по результатам мини-пробника.',
     topics: ['Производная', 'Параметры', 'Текстовые задачи'],
     plan: ['Диагностика по базовым темам', 'Разбор ошибок', '3 тренировки по слабым заданиям', 'Мини-пробник в конце недели', 'Обновление маршрута']
   },
-  'Боюсь не успеть': {
+  'Сложно держать темп': {
     risk: 'Нужен реалистичный темп',
     pace: '4 шага без перегруза',
+    summary: 'Маршрут удерживает спокойный темп: меньше случайных задач, больше контрольных точек.',
     next: 'Собрать план на 7 дней с двумя короткими тренировками и одной контрольной точкой.',
     mentor: 'Разделяем подготовку на короткие блоки. Сейчас важнее стабильность, чем попытка закрыть всё сразу.',
     topics: ['План недели', 'Повторение', 'Контрольная точка'],
@@ -36,6 +92,7 @@ const routeProfiles = {
   'Не вижу прогресс': {
     risk: 'Прогресс не виден по темам',
     pace: '5 измеримых шагов',
+    summary: 'Система собирает прогресс в одну картину: темы, задания, пробники, ошибки и отчёт.',
     next: 'Зафиксировать стартовый результат и отметить темы, которые уже можно закрыть.',
     mentor: 'Собираем прогресс в одну картину: темы, задания, пробники и ошибки. Так движение становится заметным.',
     topics: ['Стартовый балл', 'Закрытые темы', 'Ошибки пробника'],
@@ -44,6 +101,7 @@ const routeProfiles = {
   'Нужна помощь со второй частью': {
     risk: 'Нужна проверка сложных решений',
     pace: '3 глубоких разбора',
+    summary: 'Главный фокус недели, не объём заданий, а качество решения, оформление и обратная связь.',
     next: 'Разобрать одно задание второй части и отметить повторяющиеся ошибки в решении.',
     mentor: 'Работаем не объёмом, а качеством решения. Вторая часть требует проверки логики и оформления.',
     topics: ['Вторая часть', 'Аргументация', 'Оформление'],
@@ -111,6 +169,7 @@ function updatePreview() {
 function updateResult() {
   const state = getDiagnosticState();
   document.querySelector('#result-title').textContent = `${state.exam} по ${state.subjectLabel} на ${state.goal}`;
+  document.querySelector('#result-summary').textContent = state.profile.summary;
   document.querySelector('#result-level').textContent = state.level;
   document.querySelector('#result-risk').textContent = state.profile.risk;
   document.querySelector('#result-pace').textContent = state.profile.pace;
@@ -138,6 +197,24 @@ function updateResult() {
     row.innerHTML = `<strong>${topic}</strong><span>${index === 0 ? 'высокий приоритет' : index === 1 ? 'следующий фокус' : 'поддерживающая практика'}</span>`;
     demoTopics.append(row);
   });
+}
+
+function getTariff(format) {
+  return tariffCatalog[format] || {
+    title: format,
+    price: 'подбор после диагностики',
+    summary: 'Наставник уточнит цель, предмет и текущий уровень перед стартом.'
+  };
+}
+
+function updateLeadDialog(format) {
+  const tariff = getTariff(format);
+  const input = leadDialog.querySelector('input[name="format"]');
+  const title = leadDialog.querySelector('#lead-title');
+  const summary = leadDialog.querySelector('#lead-format-summary');
+  input.value = tariff.title;
+  title.textContent = tariff.title.includes('Консультация') ? 'Запишем на консультацию' : `Формат: ${tariff.title}`;
+  summary.innerHTML = `<span>${tariff.price}</span><strong>${tariff.summary}</strong>`;
 }
 
 function openView(view) {
@@ -230,10 +307,7 @@ document.querySelectorAll('[data-back-site]').forEach((button) => {
 document.querySelectorAll('[data-open-lead]').forEach((button) => {
   button.addEventListener('click', () => {
     const format = button.getAttribute('data-format') || 'Формат подготовки';
-    const input = leadDialog.querySelector('input[name="format"]');
-    const title = leadDialog.querySelector('#lead-title');
-    input.value = format;
-    title.textContent = format.includes('Консультация') ? 'Запишем на консультацию' : `Формат: ${format}`;
+    updateLeadDialog(format);
     openDialog(leadDialog);
   });
 });
@@ -253,12 +327,13 @@ leadDialog?.querySelector('form').addEventListener('submit', (event) => {
   const form = event.currentTarget;
   const status = form.querySelector('.form-status');
   if (!validateLeadForm(form)) {
-    status.textContent = 'Заполните имя, класс, предмет и контакт, чтобы увидеть демо-подтверждение.';
+    status.textContent = 'Заполните имя, класс, предмет и контакт. Так наставник сможет собрать стартовый маршрут.';
     return;
   }
+  const selectedFormat = form.elements.format.value || 'подобранный формат';
   closeDialog(leadDialog);
   form.reset();
-  showToast('Демо-заявка принята. В реальном продукте наставник получил бы её в CRM.');
+  showToast(`Заявка на ${selectedFormat} собрана. Следующий шаг: наставник связывается, уточняет цель и открывает стартовый маршрут.`);
 });
 
 navToggle?.addEventListener('click', () => {
