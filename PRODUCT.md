@@ -26,6 +26,8 @@ The tone is premium and calm with a modern youth-facing edge. It should be under
 
 Do not use aggressive exam marketing, panic, red CTAs, fear of failure, meme-heavy student style, childish visuals, black backgrounds, acid colors, hard corners, dense legacy tables, or claims such as "100 points in a month" and "guaranteed result".
 
+Never use fake guarantee language: "guarantee 90+", "100 points in a month", "best teachers", "get admitted without stress", "results without effort", or "the only school that really works". Use honest product language instead: help students understand what to learn next, show weak topics, turn mistakes into a study plan, help maintain pace, and make progress visible to students and parents.
+
 Avoid generic education copy such as "quality education" and "best teachers". The site should prove value through mechanics: diagnostics, route, practice, mock exams, progress, weak topics, mentor, and parent reports.
 
 ## Design Principles
