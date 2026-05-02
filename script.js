@@ -118,6 +118,15 @@ const subjectLabels = {
   информатике: 'информатике'
 };
 
+const subjectNames = {
+  математике: 'математика',
+  'русскому языку': 'русский язык',
+  обществознанию: 'обществознание',
+  истории: 'история',
+  'английскому языку': 'английский язык',
+  информатике: 'информатика'
+};
+
 function setSiteInert(value) {
   siteShells.forEach((node) => {
     if (value) node.setAttribute('inert', '');
@@ -133,15 +142,18 @@ function getFormValue(form, name) {
 }
 
 function getDiagnosticState() {
+  const grade = getFormValue(diagnosticForm, 'grade') || '11 класс';
   const exam = getFormValue(diagnosticForm, 'exam') || 'ЕГЭ';
   const subject = getFormValue(diagnosticForm, 'subject') || 'математике';
   const goal = getFormValue(diagnosticForm, 'goal') || '85+';
   const level = getFormValue(diagnosticForm, 'level') || 'средний';
   const problem = getFormValue(diagnosticForm, 'problem') || 'Не хватает практики';
   return {
+    grade,
     exam,
     subject,
     subjectLabel: subjectLabels[subject] || subject,
+    subjectName: subjectNames[subject] || subject,
     goal,
     level,
     problem,
@@ -150,6 +162,7 @@ function getDiagnosticState() {
 }
 
 function renderTopicTags(container, topics) {
+  if (!container) return;
   container.innerHTML = '';
   topics.forEach((topic, index) => {
     const item = document.createElement('span');
@@ -159,9 +172,37 @@ function renderTopicTags(container, topics) {
   });
 }
 
+function renderWeekSchedule(container, plan) {
+  if (!container) return;
+  const days = ['Пн', 'Ср', 'Пт'];
+  container.innerHTML = '';
+  plan.slice(1, 4).forEach((item, index) => {
+    const row = document.createElement('div');
+    const day = document.createElement('span');
+    const title = document.createElement('strong');
+    day.textContent = days[index] || 'Вс';
+    title.textContent = item;
+    row.append(day, title);
+    container.append(row);
+  });
+}
+
+function renderTaskStack(container, plan) {
+  if (!container) return;
+  container.innerHTML = '';
+  plan.slice(0, 3).forEach((item, index) => {
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.checked = index < 2;
+    label.append(input, ` ${item}`);
+    container.append(label);
+  });
+}
+
 function updatePreview() {
   const state = getDiagnosticState();
-  document.querySelector('#preview-goal').textContent = `${state.exam}, ${state.subjectLabel}, ${state.goal}`;
+  document.querySelector('#preview-goal').textContent = `${state.exam}, ${state.subjectName}, ${state.goal}`;
   document.querySelector('#preview-risk').textContent = state.profile.risk;
   document.querySelector('#preview-week').textContent = state.profile.pace;
 }
@@ -169,16 +210,21 @@ function updatePreview() {
 function updateResult() {
   const state = getDiagnosticState();
   document.querySelector('#result-title').textContent = `${state.exam} по ${state.subjectLabel} на ${state.goal}`;
-  document.querySelector('#result-summary').textContent = state.profile.summary;
+  document.querySelector('#result-summary').textContent = `${state.grade}, ${state.level} уровень. ${state.profile.summary}`;
+  document.querySelector('#result-grade').textContent = state.grade;
   document.querySelector('#result-level').textContent = state.level;
   document.querySelector('#result-risk').textContent = state.profile.risk;
   document.querySelector('#result-pace').textContent = state.profile.pace;
   document.querySelector('#result-next').textContent = state.profile.next;
   document.querySelector('#result-mentor').textContent = state.profile.mentor;
+  document.querySelector('#demo-greeting').textContent = `Кабинет: ${state.grade}`;
   document.querySelector('#demo-goal').textContent = `Цель: ${state.exam} по ${state.subjectLabel} на ${state.goal}`;
   document.querySelector('#demo-next-title').textContent = state.profile.topics[0] ? `Практика по теме «${state.profile.topics[0]}»` : 'Практика по слабой теме';
   document.querySelector('#demo-next-copy').textContent = state.profile.next;
   document.querySelector('#demo-mentor-copy').textContent = state.profile.mentor;
+  document.querySelector('#demo-progress-copy').textContent = `В фокусе ${state.profile.topics.length} темы. План держит цель ${state.goal} и текущий риск.`;
+  document.querySelector('#demo-practice-copy').textContent = `${state.profile.pace}: практика строится вокруг выбранной проблемы «${state.problem.toLowerCase()}».`;
+  document.querySelector('#demo-parent-focus').textContent = state.profile.topics.slice(0, 2).join(' и ');
 
   const weekList = document.querySelector('#week-plan-list');
   weekList.innerHTML = '';
@@ -188,6 +234,8 @@ function updateResult() {
     weekList.append(li);
   });
 
+  renderWeekSchedule(document.querySelector('#demo-week-schedule'), state.profile.plan);
+  renderTaskStack(document.querySelector('#demo-task-stack'), state.profile.plan);
   renderTopicTags(document.querySelector('#result-topics'), state.profile.topics);
 
   const demoTopics = document.querySelector('#demo-topics');
@@ -208,13 +256,31 @@ function getTariff(format) {
 }
 
 function updateLeadDialog(format) {
+  const state = getDiagnosticState();
   const tariff = getTariff(format);
   const input = leadDialog.querySelector('input[name="format"]');
   const title = leadDialog.querySelector('#lead-title');
   const summary = leadDialog.querySelector('#lead-format-summary');
+  const gradeField = leadDialog.querySelector('[name="leadGrade"]');
+  const subjectField = leadDialog.querySelector('[name="leadSubject"]');
   input.value = tariff.title;
   title.textContent = tariff.title.includes('Консультация') ? 'Запишем на консультацию' : `Формат: ${tariff.title}`;
   summary.innerHTML = `<span>${tariff.price}</span><strong>${tariff.summary}</strong>`;
+  if (gradeField && !gradeField.value) gradeField.value = state.grade;
+  if (subjectField && !subjectField.value) subjectField.value = state.subjectName;
+}
+
+function activateDashboardTab(target = 'today') {
+  document.querySelectorAll('[data-dashboard-tab]').forEach((node) => {
+    const isActive = node.getAttribute('data-dashboard-tab') === target;
+    node.classList.toggle('active', isActive);
+    node.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
+  document.querySelectorAll('[data-tab-panel]').forEach((panel) => {
+    const isActive = panel.getAttribute('data-tab-panel') === target;
+    panel.classList.toggle('is-active', isActive);
+    panel.hidden = !isActive;
+  });
 }
 
 function openView(view) {
@@ -222,9 +288,13 @@ function openView(view) {
   resultView.hidden = true;
   demoView.hidden = true;
   view.hidden = false;
+  view.scrollTop = 0;
   body.classList.add('view-open');
   const target = view.querySelector('main');
-  window.setTimeout(() => target?.focus(), 0);
+  window.setTimeout(() => {
+    target?.focus({ preventScroll: true });
+    view.scrollTop = 0;
+  }, 0);
 }
 
 function closeViews() {
@@ -265,6 +335,11 @@ function validateLeadForm(form) {
     wrapper?.classList.toggle('has-error', isEmpty);
     if (isEmpty) valid = false;
   });
+  const contact = form.elements.contact;
+  if (contact && contact.value.trim().length > 0 && contact.value.trim().length < 5) {
+    contact.closest('.field')?.classList.add('has-error');
+    valid = false;
+  }
   return valid;
 }
 
@@ -292,6 +367,7 @@ document.querySelectorAll('[data-open-result]').forEach((button) => {
 document.querySelectorAll('[data-open-demo]').forEach((button) => {
   button.addEventListener('click', () => {
     updateResult();
+    activateDashboardTab('today');
     openView(demoView);
   });
 });
@@ -327,7 +403,7 @@ leadDialog?.querySelector('form').addEventListener('submit', (event) => {
   const form = event.currentTarget;
   const status = form.querySelector('.form-status');
   if (!validateLeadForm(form)) {
-    status.textContent = 'Заполните имя, класс, предмет и контакт. Так наставник сможет собрать стартовый маршрут.';
+    status.textContent = 'Заполните имя, класс, предмет и контакт. Контакт должен быть телефоном или Telegram, чтобы наставник мог прислать стартовый маршрут.';
     return;
   }
   const selectedFormat = form.elements.format.value || 'подобранный формат';
@@ -351,13 +427,7 @@ navMenu?.addEventListener('click', (event) => {
 
 document.querySelectorAll('[data-dashboard-tab]').forEach((tab) => {
   tab.addEventListener('click', () => {
-    const target = tab.getAttribute('data-dashboard-tab');
-    document.querySelectorAll('[data-dashboard-tab]').forEach((node) => {
-      node.classList.toggle('active', node === tab);
-    });
-    document.querySelectorAll('[data-tab-panel]').forEach((panel) => {
-      panel.classList.toggle('is-active', panel.getAttribute('data-tab-panel') === target);
-    });
+    activateDashboardTab(tab.getAttribute('data-dashboard-tab'));
   });
 });
 
@@ -382,6 +452,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.reveal').forEach((node) => revealObserver.observe(node));
+activateDashboardTab('today');
 updatePreview();
 body.classList.add('motion-ready');
 revealVisibleNow();
